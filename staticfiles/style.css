@@ -1,0 +1,21 @@
+.navbar{
+	background-color: #FABD01;
+}
+.django-ckeditor-widget{
+	width: 100%;
+}
+
+.star-checkbox::before{
+  content:"\f005";
+  font-size:40px;
+  font-family: "Font Awesome 5 Free";
+  color:#FFEE58;
+}
+.hide-checkbox:checked + .star-checkbox:before{
+  font-weight: 900;
+  color:#FFEE58;
+}
+.hide-checkbox{
+  display:none;
+  
+}
