@@ -12,6 +12,7 @@
     <link rel="short icon" href="https://icons.iconarchive.com/icons/hamzasaleem/stock/64/Notes-icon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Notes | Django</title>
+
   </head>
   <script>
   if ( window.history.replaceState ) {
@@ -29,16 +30,10 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             
             
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
+            <li class="nav-item">
+                <a href="{% url 'note:create' %}" class="btn btn-primary">
+                    Create
+                </a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -49,14 +44,21 @@
               </a>
             </li>
           </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <form  class="d-flex" method="GET">
+
+            <input onkeyup="" class="form-control me-2"
+            type="search" placeholder="Search" 
+            aria-label="Search"
+            name="note">
+
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
+
         </div>
       </div>
     </nav>
     <div class="container card bg-info p-5 mt-3">
+
       <div class="row">
         {% for note in notes %}
           <div class="col-md-4">
@@ -89,7 +91,12 @@
                     {{note.body|truncatewords:"10"}}
                   </p>
                   <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal1"><h1>....</h1></a>
-                  
+                      <a href="{% url 'note:update' note.id %}" class="btn btn-success">
+                      Update |Note - {{ note.id }}
+                      </a>
+                      <a href="{% url 'note:delete' note.id %}" class="btn btn-primary">
+                      Delete |Note - {{ note.id }}
+                      </a>
                 {% endautoescape %}
                 
               </div>

@@ -1,11 +1,27 @@
 from django.shortcuts import render,redirect
 from django.views.generic import View, ListView
 from .models import Note
-
-from django.http import HttpResponse
+from django.views.generic.edit import (
+	CreateView,
+	UpdateView,
+	DeleteView,
+)
+from django.http import HttpResponse, JsonResponse
 from .forms import AddNoteForm
 # Create your views here.
+class CreateNoteView(CreateView):
+	model = Note
+	fields = ['title','body','prioroty','star']
+	success_url = '/'
 
+class UpdateNoteView(UpdateView):
+	model = Note
+	fields = ['title', 'body', 'prioroty', 'star']
+	success_url = '/'
+
+class DeleteNoteView(DeleteView):
+	model = Note
+	success_url = '/'
 
 class HomePageView(View):
 
@@ -30,9 +46,3 @@ class HomePageView(View):
 		}
 		return render(request, 'index.html', context)
 
-import json
-def starUnstar(request):
-	d = request.GET['data']
-	print(d)
-	data = json.loads(d)
-	return HttpResponse('is worked ')

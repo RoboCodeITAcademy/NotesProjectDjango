@@ -5,5 +5,8 @@ app_name = 'note'
 
 urlpatterns = [
 	path('', views.HomePageView.as_view(), name='home'),
-	path('stars/', views.starUnstar, name='starUnstar'),
+	path('create/', views.CreateNoteView.as_view(),name='create'),
+	path('update/<pk>', views.UpdateNoteView.as_view(),name='update'),
+	path('delete/<pk>', views.DeleteNoteView.as_view(), name='delete')
+
 ]
